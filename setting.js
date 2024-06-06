@@ -1,0 +1,1 @@
+export const serviceAccount = process.env.SERVICE;
