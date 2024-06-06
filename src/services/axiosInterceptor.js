@@ -8,7 +8,7 @@ import { setLogout } from '../state/state';
 
 
 export const instance = axios.create({
-    baseURL: 'https://worklink.tech',
+    baseURL: 'http://localhost:3001',
      // Replace with your actual base URL
   });
 

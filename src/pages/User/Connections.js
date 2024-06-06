@@ -123,7 +123,7 @@ function Connections() {
       // window.location.reload();
       // this.setConnectionData()
       getRequest();
-    
+
 
       console.log(connect);
     } catch (error) {
@@ -140,10 +140,10 @@ function Connections() {
         flexBasis={isNonMobileScreens ? "100%" : undefined}
       >
         <WidgetWrapper
-          width="50%"
+          width={isNonMobileScreens ? "50%" : "80%"}
           style={{ margin: "0 auto", textAlign: "center" }}
         >
-          <Typography variant="h4" padding="10px" style={{ textAlign: "left" }}>
+          <Typography variant="h5" style={{ textAlign: "left" }}>
             {" "}
             Invites
           </Typography>
@@ -159,7 +159,7 @@ function Connections() {
           <Divider />
           {userData.length < 1 ? (
             <Typography
-              variant="h4"
+              variant="h5"
               padding="10px"
               style={{ textAlign: "center" }}
             >
@@ -170,48 +170,79 @@ function Connections() {
             <Box></Box>
           )}
           {userData.map((user) => (
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                paddingTop: "10px",
-              }}
-            >
-              {/* Image holder */}
+            <div>
               <div
                 style={{
-                  width: "80px",
-                  height: "80px",
-                  backgroundColor: "lightgray",
-                  borderRadius: "50px",
+                  display: "flex",
+                  alignItems: "center",
+                  paddingTop: "10px",
                 }}
               >
-                <UserImage size="80px" image={user.picturePath} />
+                {/* Image holder */}
+                <div
+                  style={{
+                    width: isNonMobileScreens ? "80px" : "40px",
+                    height: isNonMobileScreens ? "80px" : "40px",
+                    backgroundColor: "lightgray",
+                    borderRadius: "50px",
+                  }}
+                >
+                  <UserImage size={isNonMobileScreens ? "80px" : "40px"} image={user.picturePath} />
+                </div>
+                {/* Text */}
+
+
+                <div style={{ marginLeft: "20px", display:"flex",flexDirection: "column", alignItems: "flex-start"
+    }}>
+                  <Typography variant="h4" >
+                    {user.firstName} {user.lastName}
+                  </Typography>
+                  <Typography color={medium}>{user.recentJob}</Typography>
+                </div>
+                {/* Accept button */}
+                {isNonMobileScreens ?
+
+                  <Button
+                    onClick={() => handleClick(user.email)}
+                    variant="contained"
+                    color="primary"
+                    style={{ marginLeft: "auto", borderRadius: "50px" }}
+                  >
+                    Accept
+                  </Button> : <div></div>}
+                {isNonMobileScreens ?
+                  <Button
+                    onClick={() => handleDelete(user.email)}
+                    variant="contained"
+                    color="primary"
+                    style={{ marginLeft: "20px", borderRadius: "50px" }}
+                  >
+                    Deny
+                  </Button> : <div></div>}
+
               </div>
-              {/* Text */}
-              <div style={{ marginLeft: "20px" }}>
-                <Typography variant="h4" padding="10px">
-                  {user.firstName} {user.lastName}
-                </Typography>
-                <Typography color={medium}>{user.recentJob}</Typography>
-              </div>
-              {/* Accept button */}
-              <Button
-                onClick={() => handleClick(user.email)}
-                variant="contained"
-                color="primary"
-                style={{ marginLeft: "auto", borderRadius: "50px" }}
-              >
-                Accept
-              </Button>
-              <Button
-              onClick={() => handleDelete(user.email)}
-                variant="contained"
-                color="primary"
-                style={{ marginLeft: "20px", borderRadius: "50px" }}
-              >
-                Deny
-              </Button>
+
+              {!isNonMobileScreens ?
+
+                <Button
+                  onClick={() => handleClick(user.email)}
+                  variant="contained"
+                  color="primary"
+                  style={{ marginLeft: "auto", marginTop: "10px", borderRadius: "50px" }}
+                >
+                  Accept
+                </Button> : <div></div>}
+              {!isNonMobileScreens ?
+                <Button
+                  onClick={() => handleDelete(user.email)}
+                  variant="contained"
+                  color="primary"
+                  style={{ marginLeft: "10px", marginTop: "10px", borderRadius: "50px" }}
+                >
+                  Deny
+                </Button> : <div></div>}
+
+
             </div>
           ))}
         </WidgetWrapper>
@@ -221,10 +252,10 @@ function Connections() {
 
       <Box flexBasis={isNonMobileScreens ? "100%" : undefined}>
         <WidgetWrapper
-          width="50%"
+          width={isNonMobileScreens ? "50%" : "80%"}
           style={{ margin: "0 auto", textAlign: "center" }}
         >
-          <Typography variant="h4" padding="10px" style={{ textAlign: "left" }}>
+          <Typography variant="h5" style={{ textAlign: "left" }}>
             {" "}
             Connections
           </Typography>
@@ -240,7 +271,7 @@ function Connections() {
           <Divider />
           {connectionData.length < 1 ? (
             <Typography
-              variant="h4"
+              variant="h5"
               padding="10px"
               style={{ textAlign: "center" }}
             >
@@ -251,6 +282,7 @@ function Connections() {
             <Box></Box>
           )}
           {connectionData.map((user) => (
+            <div>
             <div
               style={{
                 display: "flex",
@@ -261,36 +293,48 @@ function Connections() {
               {/* Image holder */}
               <div
                 style={{
-                  width: "80px",
-                  height: "80px",
+                  width: isNonMobileScreens ? "80px" : "40px",
+                  height: isNonMobileScreens ? "80px" : "40px",
                   backgroundColor: "lightgray",
                   borderRadius: "50px",
                 }}
               >
-                <UserImage size="80px" image={user.picturePath} />
+                <UserImage size={isNonMobileScreens ? "80px" : "40px"} image={user.picturePath} />
               </div>
               {/* Text */}
-              <div style={{ marginLeft: "20px" }}>
-                <Typography variant="h4" padding="10px">
+              <div style={{ marginLeft: "20px",display:"flex",flexDirection: "column", alignItems: "flex-start" }}>
+                <Typography variant="h5">
                   {user.firstName} {user.lastName}
                 </Typography>
-                <Typography color={medium}>{user.recentJob}</Typography>
+                <Typography  color={medium}>{user.recentJob}</Typography>
               </div>
               {/* Accept button */}
+              {isNonMobileScreens ?
               <Button
                 variant="contained"
                 color="primary"
                 style={{ marginLeft: "auto", borderRadius: "50px" }}
-                onClick={() =>  navigate("/chat",{ state: user._id })} >
+                onClick={() => navigate("/chat", { state: user._id })} >
                 Message
-              </Button>
+              </Button>:<div></div>
+              }
             </div>
+             {!isNonMobileScreens ?
+              <div style={{ marginLeft: "60px",display:"flex",flexDirection: "column", alignItems: "flex-start" }}>
+              <Button
+                variant="contained"
+                color="primary"
+                style={{ marginTop: "10px", borderRadius: "50px" }}
+                onClick={() => navigate("/chat", { state: user._id })} >
+                Message
+              </Button></div>:<div></div>
+              }</div>
           ))}
         </WidgetWrapper>
         <Box m="2rem 0" />
         {/* <FriendListWidget userId={userId} /> */}
       </Box>
-    </Box>
+    </Box >
   );
 }
 

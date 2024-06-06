@@ -62,7 +62,7 @@ const Navbar = () => {
   const onChange = (event) => {
     setSearchData(event.target.value);
   };
-  const socket = io("https://worklink.tech");
+  const socket = io("http://localhost:3001");
 
   useEffect(() => {
     socket.emit("join-room", email);
@@ -311,46 +311,62 @@ const Navbar = () => {
               alignItems="center"
               gap="3rem"
             >
-              <IconButton
-                onClick={() => dispatch(setMode())}
-                sx={{ fontSize: "25px" }}
-              >
-                {theme.palette.mode === "dark" ? (
-                  <DarkMode sx={{ fontSize: "25px" }} />
-                ) : (
-                  <LightMode sx={{ color: dark, fontSize: "25px" }} />
-                )}
-              </IconButton>
-              <Message sx={{ fontSize: "25px" }} />
-              <Notifications sx={{ fontSize: "25px" }} />
+                 
+            <Badge badgeContent={connectionCount} color="secondary">
+              <Group
+                onClick={handleNotification}
+                sx={{ fontSize: "25px", color: "white", cursor: "pointer" }}
+              />
+            </Badge>
 
-              <FormControl variant="standard" value={fullName}>
-                <Select
-                  value={fullName}
-                  sx={{
+            <Message
+              onClick={() => navigate("/chat")}
+              sx={{ fontSize: "25px", color: "white", cursor: "pointer" }}
+            />
+
+            <Work
+              onClick={() => navigate("/jobLists")}
+              sx={{ fontSize: "25px", color: "white", cursor: "pointer" }}
+            />
+
+            <Badge badgeContent={jobCount} color="secondary">
+              <Notifications
+                sx={{ fontSize: "25px", color: "white", cursor: "pointer" }}
+                onClick={(e) => {
+                  handleNotificationClick(e);
+                  handleJobNotification(e);
+                }}
+              />
+            </Badge>
+
+            <FormControl variant="standard" value={fullName}>
+              <Select
+                value={fullName}
+                sx={{
+                  backgroundColor: neutralLight,
+                  width: "150px",
+                  borderRadius: "0.25rem",
+                  p: "0.25rem 1rem",
+                  "& .MuiSvgIcon-root": {
+                    pr: "0.25rem",
+                    width: "3rem",
+                  },
+                  "& .MuiSelect-select:focus": {
                     backgroundColor: neutralLight,
-                    width: "150px",
-                    borderRadius: "0.25rem",
-                    p: "0.25rem 1rem",
-                    "& .MuiSvgIcon-root": {
-                      pr: "0.25rem",
-                      width: "3rem",
-                    },
-                    "& .MuiSelect-select:focus": {
-                      backgroundColor: neutralLight,
-                    },
-                  }}
-                  input={<InputBase />}
-                >
-                  <MenuItem value={fullName}>
-                    <Typography>{fullName}</Typography>
-                  </MenuItem>
-                  <MenuItem onClick={() => dispatch(setLogout())}>
-                    Log Out
-                  </MenuItem>
-                </Select>
-              </FormControl>
-            </FlexBetween>
+                  },
+                }}
+                input={<InputBase />}
+              >
+                <MenuItem value={fullName}>
+                  <Typography>{fullName}</Typography>
+                </MenuItem>
+                <MenuItem onClick={() => dispatch(setLogout())}>
+                  Log Out
+                </MenuItem>
+              </Select>
+            </FormControl>
+          </FlexBetween>
+          
           </Box>
         )}
       </FlexBetween>

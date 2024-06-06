@@ -25,7 +25,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
   // const patchFriend = async () => {
   //   console.log(friendId,_id,"hereherherererererer");
   //   const response = await fetch(
-  //     `https://worklink.tech/users/${_id}/${friendId}`,
+  //     ` http://localhost:3001/users/${_id}/${friendId}`,
   //     {
   //       method: "PATCH",
   //       headers: {

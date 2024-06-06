@@ -54,7 +54,7 @@ function Login() {
     } catch (error) {
       // Handle request error
       console.error("Request error:", error);
-     
+    
       
     }
   };
@@ -93,17 +93,17 @@ function Login() {
       <Headers />
       <div className="container-fluid">
         <div className="row">
-          <div className="col-md-6 d-flex justify-content-center align-items-center">
+          <div className="col-md-6 d-flex justify-content-center align-items-center mt-5 mt-md-0">
             <form onSubmit={handleSubmit} className="w-75">
               {/* New text above email field */}
-              <div className="mb-4">
+              <div className="mt-10 mt-md-4">
                 <h3 className="text-muted">
                   Your gateway to the professional world
                 </h3>
               </div>
 
               {/* Email input */}
-              <div className="mb-4">
+              <div className="mt-10 mt-md-4">
                 <label htmlFor="email" className="form-label">
                   Email address
                 </label>
@@ -119,7 +119,7 @@ function Login() {
               </div>
 
               {/* Password input */}
-              <div className="mb-4">
+              <div className="mt-10 mt-md-4">
                 <label htmlFor="password" className="form-label">
                   Password
                 </label>
@@ -135,12 +135,12 @@ function Login() {
               </div>
 
               {/* Submit button */}
-              <button type="submit" className="btn btn-info mb-4">
+              <button type="submit" style={{marginTop: "60px"}} className="btn btn-info mt-10 mt-md-4">
                 Sign in
               </button>
 
               {/* Forgot password */}
-              <p className="small mb-5">
+              <p className="small mt-10 mt-md-4">
                 <a className="text-muted" href="#!">
                   Forgot password?
                 </a>
@@ -163,7 +163,7 @@ function Login() {
               </div>
 
               {/* Register link */}
-              <p>
+              <p className="mt-5">
                 Don't have an account?{" "}
                 <a href="/register/newuser" className="link-info">
                   Register here
@@ -173,11 +173,11 @@ function Login() {
           </div>
 
           {/* Your existing right-side image column */}
-          <div className="col-md-6 p-0">
+          <div className="col-md-6 d-none d-sm-block p-0">
             <img
               src="/wifi.gif"
               alt="Login image"
-              className="w-100"
+              className="w-100 img-fluid"
               style={{
                 objectFit: "cover",
                 objectPosition: "left",
